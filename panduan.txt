@@ -1,0 +1,91 @@
+# Panduan Workflow
+A. Persiapan Environment
+   * Install text editor (VS Code/Sublime/Notepad++/Notepad)
+   * Install browser (Google Chrome/Firefox)
+   * Install Git (Pastikan bisa akses lewat terminal)
+B. Tahap Awal Mendapatkan Repository (hanya dilakukan sekali saja)
+   * Clone repository kelompok A12 (https://github.com/uzumakitensho/dts-b1-web-a12.git), caranya:
+     - Masuk ke folder untuk meletakan project melalui terminal (bisa teman-teman googling, karena windows dan unix memiliki command yang berbeda).
+     - Ketikan command di terminal:
+
+       git clone https://github.com/uzumakitensho/dts-b1-web-a12.git
+
+       atau:
+
+       git clone https://github.com/uzumakitensho/dts-b1-web-a12.git -b master
+
+       "-b" adalah opsi untuk memilih branch awal saat clone, "master" adalah nama branch nya.
+       Kenapa command yang pertama tidak menggunakan "-b master"? Karena saat clone tidak menggunakan opsi "-b" yang di-clone adalah branch default, dan di sini branch defaultnya adalah "master".
+     - Selamat repository sudah berhasil di clone di local/laptop teman-teman.
+     - Lalu selanjutnya teman-teman harus membuat branch baru, karena di sini kita kerja tim dan branch "master" seharusnya mengandung pekerjaan dari teman-teman yang sudah fix yang dikumpulkan menjadi satu melalui Pull Request.
+   * Membuat branch baru:
+     - Nama branch ditentukan saja memakai nama panggilan teman-teman saja, contoh nya "hafid".
+     - Untuk membuat branch baru, ketikan command di terminal:
+
+       git checkout -b nama-branch
+
+       Karena di sini branch saya adalah "hafid", maka saya akan mengetikan:
+
+       git checkout -b hafid
+
+     - Dalam posisi tersebut, branch "hafid" masih di local/laptop saya, belum masuk ke repo. Cara untuk memasukan ke repo adalah dengan cara "push" ke repo:
+
+       git push origin nama-branch
+
+       maka saya harus mengetikan:
+
+       git push -u origin hafid
+
+     - Lalu masukan username dan password github, lalu enter.
+     - Selamat branch teman-teman sudah masuk di repository.
+C. Tahap Pengembangan
+   * Flow saat mau mengerjakan task
+     - Fetch terlebih dahulu untuk mendapatkan semua log dari repo:
+
+       git fetch --all
+
+     - Lalu teman-teman harus melakukan rebase ke branch "master" untuk mendapatkan pekerjaan dari teman-teman yang lain yang sebelumnya sudah digabungkan ke dalam branch "master", caranya:
+
+       git rebase master
+
+   * Saat sudah selesai mengerjakan task dan ingin dimasukan ke repo
+     - Langkah pertama adalah men-stage file yang berubah yang akan dimasukan ke repo, caranya:
+
+       git add .
+
+     - Langkah selanjutnya yaitu commit, caranya:
+
+       git commit -m commit-message
+
+       misalkan
+
+       git commit -m "merubah css untuk footer"
+
+     - Lalu push ke branch
+
+       git push -u origin nama-branch
+
+       maka:
+
+       git push -u origin hafid
+
+     - Masukan username dan password
+     - Selamat teman-teman sudah berhasil memasukan pekerjaan di branch teman-teman di repository (ingat ya teman-teman belum menggabungkan pekerjaan dengan pekerjaan teman yang lain).
+
+   * Menggabungkan pekerjaan teman-teman.
+     Seperti yang sudah dibahas sebelumnya, pekerjaan akan digabung di dalam branch "master"
+     Penggabungan akan dilakukan dengan fungsi Pull Request Github, jadi di bagian ini teman-teman tidak menggunakan terminal. Caranya adalah:
+     - Teman-teman akses repo https://github.com/uzumakitensho/dts-b1-web-a12 lewat browser
+     - Lalu teman-teman klik menu "Pull Request" yang ada di barisan menu "Code", "Issues", "Wiki", "Security" dst.
+     - Klik tombol hijau "New Pull Request"
+     - Lalu teman-teman akan dialihkan ke halaman "Compare changes" dengan 2 inputan "base: master" <- "compare: master".
+     - Nah inputan yang kiri "base: master" adalah branch tempat menggabungkan pekerjaan dan yang kanan "compare: master" adalah branch yang akan digabungkan.
+     - Karena kita akan menggabungkan ke "master" maka inputan yang sebelah kiri sudah sesuai yaitu "base: master"
+     - Untuk inputan yang sebelah kanan, teman-teman harus merubah branch dari "master" ke branch teman-teman. Disini branch saya adalah "hafid" maka saya harus memilih branch "hafid"
+     - Sehingga menjadi "base: master" <- "compare: hafid"
+     - Jika ada perubahan maka tombol hijau "Create pull request" akan muncul
+     - Klik tombol tersebut
+     - Lalu akan dialihkan ke halaman input title dan comment PR. Untuk title teman-teman bebas input apa. Untuk input comment bisa dikosongi, tetapi biasa nya diisi perubahan terkait pekerjaan yang akan digabungkan, misalkan: "bug fixing padding footer kurang 1px" dll
+     - Setelah itu klik tombol hijau "Create pull request"
+     - Lalu akan dialihkan ke halaman yang ada tombol hijau "Merge pull request". TOLONG JANGAN DI KLIK TOMBOLNYA, biar saya saja yang merge, biar kalau ada conflict teman-teman tidak kebingungan.
+
